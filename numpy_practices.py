@@ -23,6 +23,8 @@ type(np.array([1, 2 ,3 ,4 ,5]))
 #10 tane 0 içeren ve tipi integer olan bir array oluşturalım
 np.zeros(10, dtype=int)
 
+np.full(10, 5)
+
 #0 ile 10 indekleri arasında random degerler içeren 10 integer içeren array oluşturalım
 np.random.randint(0, 10, size=10)
 
