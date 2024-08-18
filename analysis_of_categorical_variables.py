@@ -119,3 +119,59 @@ for col in num_cols:
 
 ################ Capturing variables and generalizing operations
 
+pd.set_option('display.max_columns', None)
+pd.set_option('display.width', 500)
+df = sns.load_dataset("titanic")
+df.head()
+
+def grab_col_names(dataframe, cat_th=10, car_th=20):
+    """
+    Veri setindeki kategorik, numerik ve kategorik fakat kardinal değişkenlerin isimlerini verir.
+
+    Parameters
+    ----------
+    dataframe: dataframe
+        değişken isimleri alınamk istenen dataframedir
+    cat_th: int, float
+        numerik fakat kategorik olan değişkenler için sınıf eşik değeri
+    car_th: int, float
+        kategorik fakat kardinal değişkenler için sınıf eşik değeri
+
+    Returns
+    -------
+    cat_cols: list
+        Kategorik değişken listesi
+    num_cols: list
+        Numerik değişken listesi
+    cat_but_car: list
+        Kategorik görünümlü kardinal değişken listesi
+
+    Notes
+    -------
+    cat_cols + num_cols + cat_but_car = toplan değişken sayısı
+    num_but_cat cat_cols'un içinde
+    Return olan 3 liste toplamı toplam değişken sayısına eşit: cat_cols + num_cols + cat_but_car
+
+    """
+
+help(grab_col_names)
+
+################### Analysis of target variable
+
+df.head()
+
+df["survived"].value_counts()
+cat_summary(df, "survived")
+
+df.groupby("sex")["survived"].mean()
+
+def target_summary_with_cat(dataframe, target, categorical_col):
+    print(pd.DataFrame({"TARGET MEAN": dataframe.groupby(categorical_col)[target].mean()})),
+
+
+target_summary_with_cat(df, "survived", "pclass")
+
+
+for col in cat_cols:
+    target_summary_with_cat(df, "survived", col)
+
