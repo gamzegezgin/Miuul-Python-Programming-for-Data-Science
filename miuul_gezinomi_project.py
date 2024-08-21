@@ -1,5 +1,4 @@
 import pandas as pd
-import seaborn as sns
 
 ########################################################################
 # GOREV-1
